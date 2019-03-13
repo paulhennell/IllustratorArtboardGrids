@@ -1,7 +1,12 @@
 ﻿//@target illustrator
-get_measurements();
+var measurements = get_measurements();
+
+if (measurements){
+    alert("message");
+}
 
 function get_measurements() {
+
     var dg = new Window("dialog", "Grid Measurements");
     
     //Layout Columns
@@ -65,8 +70,18 @@ function get_measurements() {
     myButtonGroup.add("button", undefined, "Cancel");
 
     if (dg.show() === 1) {
-        //do stuff
-        return true;
+            var obj = new Object();
+            obj.rows = parseFloat(rows.text);
+            obj.columns  = parseFloat(cols.text);
+            obj.top  = parseFloat(top.text);
+            obj.left = parseFloat(left.text);
+            obj.right = parseFloat(right.text);
+            obj.bottom = parseFloat(bottom.text);
+            obj.width = parseFloat(TempWidth.text);
+            obj.height = parseFloat(TempHeight.text);
+            obj.GapHorizontal = parseFloat(GapHorizontal.text);
+            obj.GapVertical = parseFloat(GapVertical.text);
+            return obj;
     } else {
         return false;
     }
