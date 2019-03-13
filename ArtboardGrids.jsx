@@ -43,22 +43,22 @@ function get_measurements() {
 
     //Template Size
     var TemplateGroup2 = dg.add("group");
-    TemplateGroup2.add('StaticText{text: "Width: "}');
+    TemplateGroup2.add('StaticText{text: "Template Width: "}');
     var TempWidth = TemplateGroup2.add("edittext");
     TempWidth.text = "1";
     TempWidth.minimumSize.width = 100;
-    TemplateGroup2.add('StaticText{text: "height: "}');
+    TemplateGroup2.add('StaticText{text: "Template height: "}');
     var TempHeight = TemplateGroup2.add("edittext");
     TempHeight.text = "1";
     TempHeight.minimumSize.width = 100;
 
     //Gap / Pitch
     var GapGroup = dg.add("group");
-    GapGroup.add('StaticText{text: "Width: "}');
+    GapGroup.add('StaticText{text: "Gap Horizontal: "}');
     var GapHorizontal = GapGroup.add("edittext");
     GapHorizontal.text = "1";
     GapHorizontal.minimumSize.width = 100;
-    GapGroup.add('StaticText{text: "height: "}');
+    GapGroup.add('StaticText{text: "Gap Vertical: "}');
     var GapVertical = GapGroup.add("edittext");
     GapVertical.text = "1";
     GapVertical.minimumSize.width = 100;
@@ -71,8 +71,8 @@ function get_measurements() {
 
     if (dg.show() === 1) {
             var obj = new Object();
-            obj.rows = parseFloat(rows.text) * 2.834645;
-            obj.columns  = parseFloat(cols.text) * 2.834645;
+            obj.rows = parseFloat(rows.text);
+            obj.columns  = parseFloat(cols.text);
             obj.top  = parseFloat(top.text) * 2.834645;
             obj.left = parseFloat(left.text) * 2.834645;
             obj.right = parseFloat(right.text) * 2.834645;
