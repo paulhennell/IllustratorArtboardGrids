@@ -1,4 +1,4 @@
-//@target illustrator
+﻿//@target illustrator
 var mea = get_measurements();
 
     if (mea){
@@ -6,8 +6,8 @@ var mea = get_measurements();
         var main = doc.artboards[0];
         main.artboardRect = rect(
             0,0,
-            mea.left + mea.right + ((mea.width + mea.GapHorizontal) * mea.columns) - mea.GapHorizontal,
-            mea.top + mea.bottom + ((mea.height + mea.GapVertical) * mea.rows) - mea.GapVertical
+            mea.pageWidth,//mea.left + mea.right + ((mea.width + mea.GapHorizontal) * mea.columns) - mea.GapHorizontal,
+            mea.pageHeight,//mea.top + mea.bottom + ((mea.height + mea.GapVertical) * mea.rows) - mea.GapVertical
         );
         main.name = "Main";
 
@@ -33,6 +33,17 @@ function rect(left, top, w, h) {
 function get_measurements() {
 
     var dg = new Window("dialog", "Grid Measurements");
+
+    //Page Size
+    var PageGroup = dg.add("group");
+    PageGroup.add('StaticText{text: "Page Width: "}');
+    var PageWidth = PageGroup.add("edittext");
+    PageWidth.text = "406.4";
+    PageWidth.minimumSize.width = 100;
+    PageGroup.add('StaticText{text: "Page height: "}');
+    var PageHeight = PageGroup.add("edittext");
+    PageHeight.text = "457.2";
+    PageHeight.minimumSize.width = 100;
     
     //Layout Columns
     var LayoutGroup = dg.add("group");
@@ -55,16 +66,6 @@ function get_measurements() {
     var left = MarginGroup.add("edittext");
     left.text = "1";
     left.minimumSize.width = 100;
-
-    var MarginGroup2 = dg.add("group");
-    MarginGroup2.add('StaticText{text: "Bottom: "}');
-    var bottom = MarginGroup2.add("edittext");
-    bottom.text = "1";
-    bottom.minimumSize.width = 100;
-    MarginGroup2.add('StaticText{text: "Right: "}');
-    var right = MarginGroup2.add("edittext");
-    right.text = "1";
-    right.minimumSize.width = 100;
 
     //Template Size
     var TemplateGroup2 = dg.add("group");
@@ -100,8 +101,8 @@ function get_measurements() {
             obj.columns  = parseFloat(cols.text);
             obj.top  = parseFloat(top.text) * 2.834645;
             obj.left = parseFloat(left.text) * 2.834645;
-            obj.right = parseFloat(right.text) * 2.834645;
-            obj.bottom = parseFloat(bottom.text) * 2.834645;
+            obj.pageWidth = parseFloat(PageWidth.text) * 2.834645;
+            obj.pageHeight = parseFloat(PageHeight.text) * 2.834645;
             obj.width = parseFloat(TempWidth.text) * 2.834645;
             obj.height = parseFloat(TempHeight.text) * 2.834645;
             obj.GapHorizontal = parseFloat(GapHorizontal.text) * 2.834645;
