@@ -1,8 +1,33 @@
 //@target illustrator
-var measurements = get_measurements();
+var mea = get_measurements();
 
-if (measurements){
-    alert("message");
+    if (mea){
+        var doc = app.activeDocument;
+        var main = doc.artboards[0];
+        main.artboardRect = rect(
+            0,0,
+            mea.left + mea.right + ((mea.width + mea.GapHorizontal) * mea.columns) - mea.GapHorizontal,
+            mea.top + mea.bottom + ((mea.height + mea.GapVertical) * mea.rows) - mea.GapVertical
+        );
+        main.name = "Main";
+
+    }
+
+    for(var r=0; r <= mea.rows -1; r++){ //rows
+        for(var c=0; c <= mea.columns -1; c++){ //columns
+            doc.artboards.add(rect(
+                ((mea.width + mea.GapHorizontal) * c) + mea.left,
+                ((mea.height + mea.GapVertical) * r) + mea.top, 
+                mea.width, 
+                mea.height
+                ));
+        }
+    }
+    doc.artboards.setActiveArtboardIndex(1);
+    app.executeMenuCommand ('fitin');
+
+function rect(left, top, w, h) {
+    return [left, -top, (left + w), -(top + h)];
 }
 
 function get_measurements() {
