@@ -1,4 +1,4 @@
-﻿//@target illustrator
+//@target illustrator
 var measurements = get_measurements();
 
 if (measurements){
@@ -71,16 +71,16 @@ function get_measurements() {
 
     if (dg.show() === 1) {
             var obj = new Object();
-            obj.rows = parseFloat(rows.text);
-            obj.columns  = parseFloat(cols.text);
-            obj.top  = parseFloat(top.text);
-            obj.left = parseFloat(left.text);
-            obj.right = parseFloat(right.text);
-            obj.bottom = parseFloat(bottom.text);
-            obj.width = parseFloat(TempWidth.text);
-            obj.height = parseFloat(TempHeight.text);
-            obj.GapHorizontal = parseFloat(GapHorizontal.text);
-            obj.GapVertical = parseFloat(GapVertical.text);
+            obj.rows = parseFloat(rows.text) * 2.834645;
+            obj.columns  = parseFloat(cols.text) * 2.834645;
+            obj.top  = parseFloat(top.text) * 2.834645;
+            obj.left = parseFloat(left.text) * 2.834645;
+            obj.right = parseFloat(right.text) * 2.834645;
+            obj.bottom = parseFloat(bottom.text) * 2.834645;
+            obj.width = parseFloat(TempWidth.text) * 2.834645;
+            obj.height = parseFloat(TempHeight.text) * 2.834645;
+            obj.GapHorizontal = parseFloat(GapHorizontal.text) * 2.834645;
+            obj.GapVertical = parseFloat(GapVertical.text) * 2.834645;
             return obj;
     } else {
         return false;
