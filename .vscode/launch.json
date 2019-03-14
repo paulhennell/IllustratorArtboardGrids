@@ -8,7 +8,7 @@
             "type": "extendscript-debug",
             "request": "launch",
             "name": "Default",
-            "program": "${workspaceFolder}/BartenderGrids.jsx",
+            "program": "${workspaceFolder}/ArtboardGrids.jsx",
             "stopOnEntry": false
         },
         {
