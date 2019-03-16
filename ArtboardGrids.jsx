@@ -1,30 +1,30 @@
 ﻿//@target illustrator
 var mea = get_measurements();
 
-    if (mea){
-        var doc = app.activeDocument;
-        var main = doc.artboards[0];
-        main.artboardRect = rect(
-            0,0,
-            mea.pageWidth,//mea.left + mea.right + ((mea.width + mea.GapHorizontal) * mea.columns) - mea.GapHorizontal,
-            mea.pageHeight,//mea.top + mea.bottom + ((mea.height + mea.GapVertical) * mea.rows) - mea.GapVertical
-        );
-        main.name = "Main";
+if (mea) {
+    var doc = app.activeDocument;
+    var main = doc.artboards[0];
+    main.artboardRect = rect(
+        0, 0,
+        mea.pageWidth, //mea.left + mea.right + ((mea.width + mea.GapHorizontal) * mea.columns) - mea.GapHorizontal,
+        mea.pageHeight, //mea.top + mea.bottom + ((mea.height + mea.GapVertical) * mea.rows) - mea.GapVertical
+    );
+    main.name = "Main";
 
-    }
 
-    for(var r=0; r <= mea.rows -1; r++){ //rows
-        for(var c=0; c <= mea.columns -1; c++){ //columns
+    for (var r = 0; r <= mea.rows - 1; r++) { //rows
+        for (var c = 0; c <= mea.columns - 1; c++) { //columns
             doc.artboards.add(rect(
                 ((mea.width + mea.GapHorizontal) * c) + mea.left,
-                ((mea.height + mea.GapVertical) * r) + mea.top, 
-                mea.width, 
+                ((mea.height + mea.GapVertical) * r) + mea.top,
+                mea.width,
                 mea.height
-                ));
+            ));
         }
     }
     doc.artboards.setActiveArtboardIndex(1);
-    app.executeMenuCommand ('fitin');
+    app.executeMenuCommand('fitin');
+}
 
 function rect(left, top, w, h) {
     return [left, -top, (left + w), -(top + h)];
@@ -44,7 +44,7 @@ function get_measurements() {
     var PageHeight = PageGroup.add("edittext");
     PageHeight.text = "457.2";
     PageHeight.minimumSize.width = 100;
-    
+
     //Layout Columns
     var LayoutGroup = dg.add("group");
     LayoutGroup.add('StaticText{text: "Rows: "}');
@@ -55,7 +55,7 @@ function get_measurements() {
     var cols = LayoutGroup.add("edittext");
     cols.text = "1";
     cols.minimumSize.width = 100;
-    
+
     //Margin Columns
     var MarginGroup = dg.add("group");
     MarginGroup.add('StaticText{text: "Top: "}');
@@ -96,18 +96,18 @@ function get_measurements() {
     myButtonGroup.add("button", undefined, "Cancel");
 
     if (dg.show() === 1) {
-            var obj = new Object();
-            obj.rows = parseFloat(rows.text);
-            obj.columns  = parseFloat(cols.text);
-            obj.top  = parseFloat(top.text) * 2.834645;
-            obj.left = parseFloat(left.text) * 2.834645;
-            obj.pageWidth = parseFloat(PageWidth.text) * 2.834645;
-            obj.pageHeight = parseFloat(PageHeight.text) * 2.834645;
-            obj.width = parseFloat(TempWidth.text) * 2.834645;
-            obj.height = parseFloat(TempHeight.text) * 2.834645;
-            obj.GapHorizontal = parseFloat(GapHorizontal.text) * 2.834645;
-            obj.GapVertical = parseFloat(GapVertical.text) * 2.834645;
-            return obj;
+        var obj = new Object();
+        obj.rows = parseFloat(rows.text);
+        obj.columns = parseFloat(cols.text);
+        obj.top = parseFloat(top.text) * 2.834645;
+        obj.left = parseFloat(left.text) * 2.834645;
+        obj.pageWidth = parseFloat(PageWidth.text) * 2.834645;
+        obj.pageHeight = parseFloat(PageHeight.text) * 2.834645;
+        obj.width = parseFloat(TempWidth.text) * 2.834645;
+        obj.height = parseFloat(TempHeight.text) * 2.834645;
+        obj.GapHorizontal = parseFloat(GapHorizontal.text) * 2.834645;
+        obj.GapVertical = parseFloat(GapVertical.text) * 2.834645;
+        return obj;
     } else {
         return false;
     }
