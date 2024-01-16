@@ -1,3 +1,8 @@
+------
+## Deprecated
+This script is no longer tested or used. It's functionality is largely replaced by the updated Artbord system in Illustrator 2023+, the script is left here for reference or older project use only.
+------
+
 # Illustrator Artboard Grids
 A script for illustrator that allows you to set up multiple artboards with a main page size behind to layout files on artboards in a specific defined grid.
 
